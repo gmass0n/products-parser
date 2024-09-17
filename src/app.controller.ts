@@ -1,7 +1,7 @@
 import { Controller, Get, Redirect } from '@nestjs/common';
 import { ApiExcludeEndpoint } from '@nestjs/swagger';
 
-import { DOCS_ROUTE } from './modules/docs/docs.constants';
+import { DOCS_ROUTE } from './shared/docs/docs.constants';
 
 @Controller()
 export class AppController {
