@@ -1,0 +1,9 @@
+export const DOCS_TITLE = 'Documentação da API';
+export const DOCS_DESCRIPTION = 'DotNet Challenge 20200902';
+export const DOCS_VERSION = process.env.npm_package_version;
+export const DOCS_ROUTE = '/docs';
+export const DOCS_LOGO_URL = '';
+export const DOCS_FAVICON_URL = '';
+export const SHOW_OPERATION_SUMMARY = 'Buscar pelo ID';
+export const STORE_OPERATION_SUMMARY = 'Criação';
+export const BATCH_DELETE_OPRATION_SUMMARY = 'Exclusão em Lista';
