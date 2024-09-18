@@ -3,7 +3,7 @@ import { SystemDatabaseConnectionStatusEnum } from '../enums/system-database-con
 export class SystemStatusEntity {
   constructor(
     public readonly databaseConnectionStatus: SystemDatabaseConnectionStatusEnum,
-    public readonly lastCronExecution: string,
+    public readonly lastCronExecution: Record<string, string>,
     public readonly uptime: string,
     public readonly memoryUsage: {
       rss: string;

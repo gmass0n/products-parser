@@ -29,6 +29,8 @@ export class ImportProductsUseCase {
       `${files.length} ${files.length === 1 ? 'file' : 'files'} were found: ${JSON.stringify(files)}`,
     );
 
+    let savedProductsCount = 0;
+
     for (const file of files) {
       try {
         this.logger.log(`Processing file ${file}`);
@@ -40,15 +42,16 @@ export class ImportProductsUseCase {
         const products = await this.parseProducts(filePath);
 
         const savedProducts = await this.saveProducts(products);
-
-        await this.productImportHistoriesRepository.create(
-          file,
-          savedProducts.length,
-        );
+        savedProductsCount += savedProducts.length;
       } catch (error) {
         this.logger.error(`Error to process file ${file}`);
       }
     }
+
+    await this.productImportHistoriesRepository.create(
+      files,
+      savedProductsCount,
+    );
 
     this.logger.debug('Products importing finished successfully');
   }
@@ -89,8 +92,13 @@ export class ImportProductsUseCase {
 
           try {
             const jsonLine = JSON.parse(line);
-            if (!!jsonLine.code) {
-              validProducts.push(jsonLine);
+            const formattedCode = jsonLine.code?.replace(/[^0-9]/g, '');
+
+            if (!Number.isNaN(formattedCode)) {
+              validProducts.push({
+                ...jsonLine,
+                code: formattedCode,
+              });
             }
 
             if (validProducts.length >= 100) {
@@ -123,7 +131,9 @@ export class ImportProductsUseCase {
           true,
         );
         savedProducts.push(savedProduct);
-      } catch (error) {}
+      } catch (error) {
+        this.logger.error(`Error to save product ${product.code}`, error);
+      }
     }
 
     return savedProducts;

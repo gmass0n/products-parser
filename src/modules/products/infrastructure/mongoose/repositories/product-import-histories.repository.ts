@@ -17,11 +17,11 @@ export class ProductImportHistoriesMongooseRepository
   ) {}
 
   public async create(
-    fileName: string,
+    files: string[],
     productsCount: number,
   ): Promise<ProductImportHistoryEntity> {
     return await this.productImportHistoryModel.create({
-      file_name: fileName,
+      files,
       imported_at: new Date(),
       products_count: productsCount,
     });

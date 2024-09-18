@@ -2,5 +2,4 @@ import { SystemDatabaseConnectionStatusEnum } from '../enums/system-database-con
 
 export interface ISystemRepository {
   checkDatabaseConnection(): Promise<SystemDatabaseConnectionStatusEnum>;
-  getLastCronExecution(): Promise<string>;
 }

@@ -17,7 +17,7 @@ export class ProductsMongooseRepository implements IProductsRepository {
   ) {}
 
   public async update(
-    code: string,
+    code: number,
     data: Partial<Omit<ProductEntity, 'code'>>,
     upsert?: boolean,
   ): Promise<ProductEntity> {
@@ -27,7 +27,7 @@ export class ProductsMongooseRepository implements IProductsRepository {
       .exec();
   }
 
-  public async delete(code: string): Promise<ProductEntity> {
+  public async delete(code: number): Promise<ProductEntity> {
     return await this.productModel
       .findOneAndUpdate(
         { code },
@@ -53,7 +53,7 @@ export class ProductsMongooseRepository implements IProductsRepository {
     ]);
   }
 
-  public async findByCode(code: string): Promise<ProductEntity> {
+  public async findByCode(code: number): Promise<ProductEntity> {
     return await this.productModel.findOne({ code }).lean().exec();
   }
 }

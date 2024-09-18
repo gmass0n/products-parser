@@ -20,15 +20,15 @@ export class ProductsFacade {
     return this.getProductsUseCase.execute(query);
   }
 
-  public async getProduct(code: string) {
+  public async getProduct(code: number) {
     return this.getProductUseCase.execute(code);
   }
 
-  public async updateProduct(code: string) {
+  public async updateProduct(code: number) {
     return this.updateProductUseCase.execute(code);
   }
 
-  public async deleteProduct(code: string) {
+  public async deleteProduct(code: number) {
     return this.deleteProductUseCase.execute(code);
   }
 

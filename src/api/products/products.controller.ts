@@ -28,7 +28,7 @@ export class ProductsController {
   @ApiOperation({ summary: 'Buscar produto pelo código' })
   @Get('/:code')
   public async show(@Param('code') code: string): Promise<ProductResponseDTO> {
-    return this.productsFacade.getProduct(code);
+    return this.productsFacade.getProduct(Number(code));
   }
 
   @ApiOkResponse({ type: ProductResponseDTO })
@@ -37,7 +37,7 @@ export class ProductsController {
   public async update(
     @Param('code') code: string,
   ): Promise<ProductResponseDTO> {
-    return this.productsFacade.updateProduct(code);
+    return this.productsFacade.updateProduct(Number(code));
   }
 
   @ApiOkResponse({ type: ProductResponseDTO })
@@ -46,6 +46,6 @@ export class ProductsController {
   public async delete(
     @Param('code') code: string,
   ): Promise<ProductResponseDTO> {
-    return this.productsFacade.deleteProduct(code);
+    return this.productsFacade.deleteProduct(Number(code));
   }
 }

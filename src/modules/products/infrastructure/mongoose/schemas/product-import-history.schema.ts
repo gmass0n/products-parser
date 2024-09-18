@@ -5,7 +5,7 @@ import { ProductImportHistoryEntity } from '~/modules/products/domain/entities/p
 export const ProductImportHistorySchema =
   new Schema<ProductImportHistoryEntity>(
     {
-      file_name: { type: String, required: true },
+      files: { type: [String], required: true },
       imported_at: { type: Date, required: true },
       products_count: { type: Number, required: true },
     },

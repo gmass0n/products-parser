@@ -2,7 +2,7 @@ import { ProductImportHistoryEntity } from '../entities/product-import-history.e
 
 export interface IProductImportHistoriesRepository {
   create(
-    fileName: string,
+    files: string[],
     productsCount: number,
   ): Promise<ProductImportHistoryEntity>;
 }

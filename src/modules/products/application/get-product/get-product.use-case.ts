@@ -9,7 +9,7 @@ export class GetProductUseCase {
     private readonly productsRepository: ProductsMongooseRepository,
   ) {}
 
-  public async execute(code: string): Promise<ProductEntity> {
+  public async execute(code: number): Promise<ProductEntity> {
     return await this.productsRepository.findByCode(code);
   }
 }

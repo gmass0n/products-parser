@@ -2,11 +2,11 @@ import { ProductEntity } from '../entities/product.entity';
 
 export interface IProductsRepository {
   update(
-    code: string,
+    code: number,
     data: Partial<Omit<ProductEntity, 'code'>>,
     upsert?: boolean,
   ): Promise<ProductEntity>;
-  delete(code: string): Promise<ProductEntity>;
+  delete(code: number): Promise<ProductEntity>;
   findAll(page?: number, limit?: number): Promise<[ProductEntity[], number]>;
-  findByCode(code: string): Promise<ProductEntity>;
+  findByCode(code: number): Promise<ProductEntity>;
 }

@@ -9,7 +9,7 @@ export class UpdateProductUseCase {
     private readonly productsRepository: ProductsMongooseRepository,
   ) {}
 
-  public async execute(code: string): Promise<ProductEntity> {
+  public async execute(code: number): Promise<ProductEntity> {
     console.log('UpdateProductUseCase', code);
     return null;
   }

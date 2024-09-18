@@ -11,9 +11,9 @@ export class SystemStatusResponseDTO {
   databaseConnectionStatus: SystemDatabaseConnectionStatusEnum;
 
   @ApiProperty({
-    description: 'Horário da última vez que o CRON foi executado',
+    description: 'Horário da última vez que as CRON foram executadadas',
   })
-  lastCronExecution: string;
+  lastCronExecution: Record<string, string>;
 
   @ApiProperty({ description: 'Tempo online' })
   uptime: string;

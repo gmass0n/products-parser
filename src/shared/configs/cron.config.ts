@@ -16,6 +16,7 @@ export const parseCronConfig = registerAs('cron', (): CronConfig => {
     productsImport: {
       time: PRODUCTS_IMPORT_CRON_TIME || CronExpression.EVERY_DAY_AT_6AM,
       disabled: !PRODUCTS_IMPORT_CRON_TIME,
+      name: 'productsImport',
     },
   };
 });
