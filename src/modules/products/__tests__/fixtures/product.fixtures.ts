@@ -5,4 +5,8 @@ export class ProductFixtures {
   static simpleProduct(): ProductEntity {
     return new ProductEntity('1', 123, ProductStatusEnum.published, new Date());
   }
+
+  static simpleProductsList(): ProductEntity[] {
+    return [this.simpleProduct(), this.simpleProduct()];
+  }
 }

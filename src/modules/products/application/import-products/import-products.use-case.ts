@@ -4,17 +4,17 @@ import * as zlib from 'zlib';
 import * as fs from 'fs';
 import * as path from 'path';
 
-import { ProductsMongooseRepository } from '../../infrastructure/mongoose/repositories/products.repository';
-import { ProductImportHistoriesMongooseRepository } from '../../infrastructure/mongoose/repositories/product-import-histories.repository';
 import { ProductEntity } from '../../domain/entities/product.entity';
+import { ProductsRepository } from '../ports/products.repository';
+import { ProductImportHistoriesRepository } from '../ports/product-import-histories.repository';
 
 @Injectable()
 export class ImportProductsUseCase {
   private readonly logger = new Logger(ImportProductsUseCase.name);
 
   constructor(
-    private readonly productsRepository: ProductsMongooseRepository,
-    private readonly productImportHistoriesRepository: ProductImportHistoriesMongooseRepository,
+    private readonly productsRepository: ProductsRepository,
+    private readonly productImportHistoriesRepository: ProductImportHistoriesRepository,
   ) {}
 
   public async execute(): Promise<void> {

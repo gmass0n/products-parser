@@ -7,6 +7,8 @@ import { ProductImportHistorySchema } from './schemas/product-import-history.sch
 
 import { PRODUCT_IMPORT_HISTORY_MODEL, PRODUCT_MODEL } from './constants';
 import { ProductImportHistoriesMongooseRepository } from './repositories/product-import-histories.repository';
+import { ProductsRepository } from '../../application/ports/products.repository';
+import { ProductImportHistoriesRepository } from '../../application/ports/product-import-histories.repository';
 
 @Module({
   imports: [
@@ -22,10 +24,15 @@ import { ProductImportHistoriesMongooseRepository } from './repositories/product
   providers: [
     ProductsMongooseRepository,
     ProductImportHistoriesMongooseRepository,
+    {
+      provide: ProductsRepository,
+      useClass: ProductsMongooseRepository,
+    },
+    {
+      provide: ProductImportHistoriesRepository,
+      useClass: ProductImportHistoriesMongooseRepository,
+    },
   ],
-  exports: [
-    ProductsMongooseRepository,
-    ProductImportHistoriesMongooseRepository,
-  ],
+  exports: [ProductsRepository, ProductImportHistoriesRepository],
 })
 export class ProductsMongooseModule {}

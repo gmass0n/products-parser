@@ -1,4 +1,4 @@
-import { ApiProperty } from '@nestjs/swagger';
+import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { ProductStatusEnum } from '~/modules/products/domain/enums/product-status.enum';
 
 export class ProductResponseDTO {
@@ -14,63 +14,63 @@ export class ProductResponseDTO {
   @ApiProperty()
   imported_t: Date;
 
-  @ApiProperty()
-  url: string;
+  @ApiPropertyOptional()
+  url?: string;
 
-  @ApiProperty()
-  creator: string;
+  @ApiPropertyOptional()
+  creator?: string;
 
-  @ApiProperty()
-  created_t: Date;
+  @ApiPropertyOptional()
+  created_t?: Date;
 
-  @ApiProperty()
-  last_modified_t: Date;
+  @ApiPropertyOptional()
+  last_modified_t?: Date;
 
-  @ApiProperty()
-  product_name: string;
+  @ApiPropertyOptional()
+  product_name?: string;
 
-  @ApiProperty()
-  quantity: string;
+  @ApiPropertyOptional()
+  quantity?: string;
 
-  @ApiProperty()
-  brands: string;
+  @ApiPropertyOptional()
+  brands?: string;
 
-  @ApiProperty()
-  categories: string;
+  @ApiPropertyOptional()
+  categories?: string;
 
-  @ApiProperty()
-  labels: string;
+  @ApiPropertyOptional()
+  labels?: string;
 
-  @ApiProperty()
-  cities: string;
+  @ApiPropertyOptional()
+  cities?: string;
 
-  @ApiProperty()
-  purchase_places: string;
+  @ApiPropertyOptional()
+  purchase_places?: string;
 
-  @ApiProperty()
-  stores: string;
+  @ApiPropertyOptional()
+  stores?: string;
 
-  @ApiProperty()
-  ingredients_text: string;
+  @ApiPropertyOptional()
+  ingredients_text?: string;
 
-  @ApiProperty()
-  traces: string;
+  @ApiPropertyOptional()
+  traces?: string;
 
-  @ApiProperty()
-  serving_size: string;
+  @ApiPropertyOptional()
+  serving_size?: string;
 
-  @ApiProperty()
-  serving_quantity: number;
+  @ApiPropertyOptional()
+  serving_quantity?: number;
 
-  @ApiProperty()
-  nutriscore_score: number;
+  @ApiPropertyOptional()
+  nutriscore_score?: number;
 
-  @ApiProperty()
-  nutriscore_grade: string;
+  @ApiPropertyOptional()
+  nutriscore_grade?: string;
 
-  @ApiProperty()
-  main_category: string;
+  @ApiPropertyOptional()
+  main_category?: string;
 
-  @ApiProperty()
-  image_url: string;
+  @ApiPropertyOptional()
+  image_url?: string;
 }

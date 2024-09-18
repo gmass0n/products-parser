@@ -21,6 +21,5 @@
     "strictBindCallApply": false,
     "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": false
-  },
-  "files": ["jest.setup.ts"]
+  }
 }

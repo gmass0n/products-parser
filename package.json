@@ -28,7 +28,6 @@
     "class-validator": "^0.14.1",
     "dotenv": "^16.4.5",
     "jest-createspyobj": "^2.0.0",
-    "jest-extended": "^4.0.2",
     "mongoose": "^8.6.3",
     "nestjs-redoc": "^2.2.2",
     "polished": "^4.3.1",
@@ -74,6 +73,9 @@
       "**/*.(t|j)s"
     ],
     "coverageDirectory": "../coverage",
-    "testEnvironment": "node"
+    "testEnvironment": "node",
+    "moduleNameMapper": {
+      "^~/(.*)$": "<rootDir>/$1"
+    }
   }
 }

@@ -1,15 +1,13 @@
 import { Injectable } from '@nestjs/common';
 
-import { ProductsMongooseRepository } from '../../infrastructure/mongoose/repositories/products.repository';
 import { GetProductsQuery } from './get-products.query';
 import { PaginatedResultQuery } from '~/shared/domain/queries/paginated-result.query';
 import { ProductEntity } from '../../domain/entities/product.entity';
+import { ProductsRepository } from '../ports/products.repository';
 
 @Injectable()
 export class GetProductsUseCase {
-  constructor(
-    private readonly productsRepository: ProductsMongooseRepository,
-  ) {}
+  constructor(private readonly productsRepository: ProductsRepository) {}
 
   public async execute({
     page = 1,

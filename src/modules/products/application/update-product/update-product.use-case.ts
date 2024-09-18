@@ -1,13 +1,11 @@
 import { Injectable } from '@nestjs/common';
 
-import { ProductsMongooseRepository } from '../../infrastructure/mongoose/repositories/products.repository';
 import { ProductEntity } from '../../domain/entities/product.entity';
+import { ProductsRepository } from '../ports/products.repository';
 
 @Injectable()
 export class UpdateProductUseCase {
-  constructor(
-    private readonly productsRepository: ProductsMongooseRepository,
-  ) {}
+  constructor(private readonly productsRepository: ProductsRepository) {}
 
   public async execute(
     code: number,
