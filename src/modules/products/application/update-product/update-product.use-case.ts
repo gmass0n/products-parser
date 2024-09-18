@@ -9,8 +9,10 @@ export class UpdateProductUseCase {
     private readonly productsRepository: ProductsMongooseRepository,
   ) {}
 
-  public async execute(code: number): Promise<ProductEntity> {
-    console.log('UpdateProductUseCase', code);
-    return null;
+  public async execute(
+    code: number,
+    data: Partial<Omit<ProductEntity, 'code'>>,
+  ): Promise<ProductEntity> {
+    return this.productsRepository.update(code, data);
   }
 }

@@ -5,6 +5,7 @@ import { DeleteProductUseCase } from './application/delete-product/delete-produc
 import { GetProductsUseCase } from './application/get-products/get-products.use-case';
 import { GetProductUseCase } from './application/get-product/get-product.use-case';
 import { GetProductsQuery } from './application/get-products/get-products.query';
+import { ProductEntity } from './domain/entities/product.entity';
 
 @Injectable()
 export class ProductsFacade {
@@ -24,8 +25,11 @@ export class ProductsFacade {
     return this.getProductUseCase.execute(code);
   }
 
-  public async updateProduct(code: number) {
-    return this.updateProductUseCase.execute(code);
+  public async updateProduct(
+    code: number,
+    data: Partial<Omit<ProductEntity, 'code'>>,
+  ) {
+    return this.updateProductUseCase.execute(code, data);
   }
 
   public async deleteProduct(code: number) {

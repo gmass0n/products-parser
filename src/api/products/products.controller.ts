@@ -1,4 +1,12 @@
-import { Controller, Delete, Get, Param, Put, Query } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Put,
+  Query,
+} from '@nestjs/common';
 import { ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
 
 import { ProductsFacade } from '~/modules/products/products.facade';
@@ -36,8 +44,9 @@ export class ProductsController {
   @Put('/:code')
   public async update(
     @Param('code') code: string,
+    @Body() body: any,
   ): Promise<ProductResponseDTO> {
-    return this.productsFacade.updateProduct(Number(code));
+    return this.productsFacade.updateProduct(Number(code), body);
   }
 
   @ApiOkResponse({ type: ProductResponseDTO })

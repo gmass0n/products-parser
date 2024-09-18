@@ -22,8 +22,8 @@ export class GetProductsUseCase {
 
     return new PaginatedResultQuery(
       products,
-      page,
-      limit,
+      Number(page),
+      Number(limit),
       Math.ceil(count / limit),
     );
   }
