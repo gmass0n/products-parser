@@ -1,6 +1,6 @@
 import { ProductStatusEnum } from '../enums/product-status.enum';
 
-export class Product {
+export class ProductEntity {
   constructor(
     public readonly code: number,
     public readonly status: ProductStatusEnum,

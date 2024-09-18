@@ -1,14 +1,14 @@
-import { Controller, Get, Redirect } from '@nestjs/common';
-import { ApiExcludeEndpoint } from '@nestjs/swagger';
-
-import { DOCS_ROUTE } from './shared/docs/docs.constants';
+import { Controller, Get } from '@nestjs/common';
+import { ApiOperation } from '@nestjs/swagger';
+import { AppService } from './app.service';
 
 @Controller()
 export class AppController {
-  @ApiExcludeEndpoint()
-  @Redirect(DOCS_ROUTE)
+  constructor(private readonly appService: AppService) {}
+
+  @ApiOperation({ summary: 'Detalhamento da API' })
   @Get('/')
-  public async docs(): Promise<void> {
-    return;
+  public async getInfo(): Promise<void> {
+    return this.appService.getInfo();
   }
 }

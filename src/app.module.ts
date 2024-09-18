@@ -10,6 +10,7 @@ import {
   parseDatabaseConfig,
 } from './shared/configs/database.config';
 import { ApiModule } from './api/api.module';
+import { AppService } from './app.service';
 
 @Module({
   imports: [
@@ -23,6 +24,7 @@ import { ApiModule } from './api/api.module';
     ProductsModule,
     ApiModule,
   ],
+  providers: [AppService],
   controllers: [AppController],
 })
 export class AppModule {}
