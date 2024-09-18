@@ -4,5 +4,6 @@ declare namespace NodeJS {
     PORT?: number;
     DB_TYPE?: 'mongodb';
     MONGODB_URI?: string;
+    PRODUCTS_IMPORT_CRON_TIME?: string;
   }
 }
