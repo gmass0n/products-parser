@@ -24,8 +24,8 @@ export class ProductsFacade {
     return this.getProductUseCase.execute(code);
   }
 
-  public async update(code: string, data: any) {
-    return this.updateProductUseCase.execute(code, data);
+  public async update(code: string) {
+    return this.updateProductUseCase.execute(code);
   }
 
   public async delete(code: string) {

@@ -2,6 +2,7 @@ import { ProductStatusEnum } from '../enums/product-status.enum';
 
 export class ProductEntity {
   constructor(
+    public readonly _id: string,
     public readonly code: number,
     public readonly status: ProductStatusEnum,
     public readonly imported_t: Date,
