@@ -16,17 +16,13 @@ export class ProductsMongooseRepository implements IProductsRepository {
     private readonly productModel: Model<ProductEntity>,
   ) {}
 
-  public async import(data: any): Promise<ProductEntity> {
-    console.log('import', data);
-    return null;
-  }
-
   public async update(
     code: string,
     data: Partial<Omit<ProductEntity, 'code'>>,
+    upsert?: boolean,
   ): Promise<ProductEntity> {
     return await this.productModel
-      .findOneAndUpdate({ code }, { $set: data }, { new: true })
+      .findOneAndUpdate({ code }, { $set: data }, { new: true, upsert })
       .lean()
       .exec();
   }

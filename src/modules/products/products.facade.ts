@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { ImportProductUseCase } from './application/import-product/import-product.use-case';
+import { ImportProductsUseCase } from './application/import-products/import-products.use-case';
 import { UpdateProductUseCase } from './application/update-product/update-product.use-case';
 import { DeleteProductUseCase } from './application/delete-product/delete-product.use-case';
 import { GetProductsUseCase } from './application/get-products/get-products.use-case';
@@ -11,7 +11,7 @@ export class ProductsFacade {
   constructor(
     private readonly getProductsUseCase: GetProductsUseCase,
     private readonly getProductUseCase: GetProductUseCase,
-    private readonly importProductUseCase: ImportProductUseCase,
+    private readonly importProductsUseCase: ImportProductsUseCase,
     private readonly updateProductUseCase: UpdateProductUseCase,
     private readonly deleteProductUseCase: DeleteProductUseCase,
   ) {}
@@ -24,11 +24,15 @@ export class ProductsFacade {
     return this.getProductUseCase.execute(code);
   }
 
-  public async update(code: string) {
+  public async updateProduct(code: string) {
     return this.updateProductUseCase.execute(code);
   }
 
-  public async delete(code: string) {
+  public async deleteProduct(code: string) {
     return this.deleteProductUseCase.execute(code);
+  }
+
+  public async importProducts() {
+    return this.importProductsUseCase.execute();
   }
 }

@@ -6,9 +6,10 @@ import { GetProductsRequestDTO } from './dtos/get-products-request.dto';
 import { GetProductsQuery } from '~/modules/products/application/get-products/get-products.query';
 import { GetProductsResponseDTO } from './dtos/get-products-response.dto';
 import { ProductResponseDTO } from './dtos/product-response.dto';
+import { PRODUCTS_DOC_TITLE, PRODUCTS_ROUTE } from './constants';
 
-@ApiTags('Produtos')
-@Controller('/products')
+@ApiTags(PRODUCTS_DOC_TITLE)
+@Controller(PRODUCTS_ROUTE)
 export class ProductsController {
   constructor(private readonly productsFacade: ProductsFacade) {}
 
@@ -36,7 +37,7 @@ export class ProductsController {
   public async update(
     @Param('code') code: string,
   ): Promise<ProductResponseDTO> {
-    return this.productsFacade.update(code);
+    return this.productsFacade.updateProduct(code);
   }
 
   @ApiOkResponse({ type: ProductResponseDTO })
@@ -45,6 +46,6 @@ export class ProductsController {
   public async delete(
     @Param('code') code: string,
   ): Promise<ProductResponseDTO> {
-    return this.productsFacade.delete(code);
+    return this.productsFacade.deleteProduct(code);
   }
 }
