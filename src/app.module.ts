@@ -11,13 +11,14 @@ import { CronModule } from './modules/cron/cron.module';
 import { parseCronConfig } from './shared/configs/cron.config';
 import { APP_GUARD } from '@nestjs/core';
 import { ApiKeyGuard } from './shared/guards/api-key.guard';
+import { parseServerConfig } from './shared/configs/server.config';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       cache: true,
       isGlobal: true,
-      load: [parseDatabaseConfig, parseCronConfig],
+      load: [parseDatabaseConfig, parseCronConfig, parseServerConfig],
     }),
     DatabaseModule.forRoot(databaseConfig),
     ApiModule,

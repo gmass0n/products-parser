@@ -7,6 +7,7 @@ import { ValidationPipe } from '@nestjs/common';
 
 import { AppModule } from './app.module';
 import { DocsModule } from './shared/docs/docs.module';
+import { ConfigService } from '@nestjs/config';
 
 (async () => {
   const app = await NestFactory.create(AppModule, { cors: true });
@@ -15,5 +16,9 @@ import { DocsModule } from './shared/docs/docs.module';
   const docsModule = new DocsModule();
   await docsModule.setup(app);
 
-  await app.listen(process.env.PORT, process.env.HOST);
+  const configService = app.get(ConfigService);
+
+  const { host, port } = configService.get('server');
+
+  await app.listen(port, host);
 })();
