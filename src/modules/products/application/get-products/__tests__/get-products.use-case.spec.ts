@@ -9,7 +9,8 @@ describe('GetProducts UseCase', () => {
   const productsRepository = createSpyObj(ProductsRepository, ['findAll']);
 
   it('should return paginated products', async () => {
-    const products = ProductFixtures.simpleProductsList();
+    const productsCount = 2;
+    const products = ProductFixtures.simpleProductsList(productsCount);
 
     productsRepository.findAll.mockResolvedValueOnce([
       products,
@@ -18,11 +19,14 @@ describe('GetProducts UseCase', () => {
 
     const sut = new GetProductsUseCase(productsRepository);
 
-    const result = await sut.execute(new GetProductsQuery(1, 20));
+    const query = new GetProductsQuery(1, 20);
+    const result = await sut.execute(query);
 
     expect(productsRepository.findAll).toHaveBeenCalled();
     expect(result.data).toEqual(products);
-    expect(result.data.length).toEqual(2);
+    expect(result.page).toEqual(query.page);
+    expect(result.limit).toEqual(query.limit);
+    expect(result.data.length).toEqual(productsCount);
     expect(result.data[0]).not.toBeNull();
     expect(result.data[1]).not.toBeNull();
   });

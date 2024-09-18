@@ -43,9 +43,7 @@ export class ImportProductsUseCase {
 
         const savedProducts = await this.saveProducts(products);
         savedProductsCount += savedProducts.length;
-      } catch (error) {
-        this.logger.error(`Error to process file ${file}`);
-      }
+      } catch (error) {}
     }
 
     await this.productImportHistoriesRepository.create(

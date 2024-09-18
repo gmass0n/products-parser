@@ -5,10 +5,10 @@ import { ProductFixtures } from '../../../__tests__/fixtures/product.fixtures';
 import { ProductEntity } from '~/modules/products/domain/entities/product.entity';
 import { UpdateProductUseCase } from '../update-product.use-case';
 
-describe('DeleteProduct UseCase', () => {
+describe('UpdateProduct UseCase', () => {
   const productsRepository = createSpyObj(ProductsRepository, ['update']);
 
-  it('should delete a product', async () => {
+  it('should update a product', async () => {
     const product = ProductFixtures.simpleProduct();
 
     const newBrands = 'Nike';
