@@ -3,6 +3,7 @@ import {
   Controller,
   Delete,
   Get,
+  Headers,
   Param,
   Put,
   Query,
@@ -15,6 +16,7 @@ import { GetProductsQuery } from '~/modules/products/application/get-products/ge
 import { GetProductsResponseDTO } from './dtos/get-products-response.dto';
 import { ProductResponseDTO } from './dtos/product-response.dto';
 import { PRODUCTS_DOC_TITLE, PRODUCTS_ROUTE } from './constants';
+import { BaseHeaders } from '~/shared/headers/base.headers';
 
 @ApiTags(PRODUCTS_DOC_TITLE)
 @Controller(PRODUCTS_ROUTE)
@@ -25,6 +27,7 @@ export class ProductsController {
   @ApiOperation({ summary: 'Listar produtos' })
   @Get('/')
   public async index(
+    @Headers() _: BaseHeaders,
     @Query() query: GetProductsRequestDTO,
   ): Promise<GetProductsResponseDTO> {
     return this.productsFacade.getProducts(
@@ -35,7 +38,10 @@ export class ProductsController {
   @ApiOkResponse({ type: ProductResponseDTO })
   @ApiOperation({ summary: 'Buscar produto pelo código' })
   @Get('/:code')
-  public async show(@Param('code') code: string): Promise<ProductResponseDTO> {
+  public async show(
+    @Headers() _: BaseHeaders,
+    @Param('code') code: string,
+  ): Promise<ProductResponseDTO> {
     return this.productsFacade.getProduct(Number(code));
   }
 
@@ -43,6 +49,7 @@ export class ProductsController {
   @ApiOperation({ summary: 'Atualizar produto' })
   @Put('/:code')
   public async update(
+    @Headers() _: BaseHeaders,
     @Param('code') code: string,
     @Body() body: any,
   ): Promise<ProductResponseDTO> {
@@ -53,6 +60,7 @@ export class ProductsController {
   @ApiOperation({ summary: 'Remover produto' })
   @Delete('/:code')
   public async delete(
+    @Headers() _: BaseHeaders,
     @Param('code') code: string,
   ): Promise<ProductResponseDTO> {
     return this.productsFacade.deleteProduct(Number(code));

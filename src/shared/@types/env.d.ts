@@ -5,5 +5,6 @@ declare namespace NodeJS {
     DB_TYPE?: 'mongodb';
     MONGODB_URI?: string;
     PRODUCTS_IMPORT_CRON_TIME?: string;
+    API_KEY?: string;
   }
 }

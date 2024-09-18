@@ -13,7 +13,6 @@ import { DocsModule } from './shared/docs/docs.module';
   app.useGlobalPipes(new ValidationPipe());
 
   const docsModule = new DocsModule();
-
   await docsModule.setup(app);
 
   await app.listen(process.env.PORT, process.env.HOST);
