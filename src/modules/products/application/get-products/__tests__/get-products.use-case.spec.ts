@@ -17,10 +17,10 @@ describe('GetProducts UseCase', () => {
       products.length,
     ]);
 
-    const sut = new GetProductsUseCase(productsRepository);
-
     const query = new GetProductsQuery(1, 20);
-    const result = await sut.execute(query);
+
+    const useCase = new GetProductsUseCase(productsRepository);
+    const result = await useCase.execute(query);
 
     expect(productsRepository.findAll).toHaveBeenCalled();
     expect(result.data).toEqual(products);

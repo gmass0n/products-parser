@@ -12,9 +12,8 @@ describe('GetProduct UseCase', () => {
 
     productsRepository.findByCode.mockResolvedValueOnce(product);
 
-    const sut = new GetProductUseCase(productsRepository);
-
-    const result = await sut.execute(product.code);
+    const useCase = new GetProductUseCase(productsRepository);
+    const result = await useCase.execute(product.code);
 
     expect(productsRepository.findByCode).toHaveBeenCalledWith(product.code);
     expect(result).toEqual(product);

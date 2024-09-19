@@ -84,11 +84,11 @@ describe('ImportProducts UseCase', () => {
       productsImportHistory,
     );
 
-    const sut = new ImportProductsUseCase(
+    const useCase = new ImportProductsUseCase(
       productsRepository,
       productsImportHistoriesRepository,
     );
-    await sut.execute();
+    await useCase.execute();
 
     expect(productsRepository.update).toHaveBeenCalledTimes(savedProductsCount);
     expect(productsImportHistoriesRepository.create).toHaveBeenCalledWith(

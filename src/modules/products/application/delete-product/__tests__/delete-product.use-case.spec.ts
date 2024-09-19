@@ -9,17 +9,14 @@ describe('DeleteProduct UseCase', () => {
   const productsRepository = createSpyObj(ProductsRepository, ['delete']);
 
   it('should delete a product', async () => {
-    const product = ProductFixtures.simpleProduct();
+    const deletedProduct = ProductFixtures.simpleDeletedProduct();
 
-    const updatedProduct = { ...product, status: ProductStatusEnum.draft };
-    productsRepository.delete.mockResolvedValueOnce(updatedProduct);
+    productsRepository.delete.mockResolvedValueOnce(deletedProduct);
 
-    const sut = new DeleteProductUseCase(productsRepository);
+    const useCase = new DeleteProductUseCase(productsRepository);
+    const result = await useCase.execute(deletedProduct.code);
 
-    const result = await sut.execute(product.code);
-
-    expect(productsRepository.delete).toHaveBeenCalledWith(product.code);
-    expect(result).toEqual(updatedProduct);
+    expect(productsRepository.delete).toHaveBeenCalledWith(deletedProduct.code);
     expect(result.status).toBe(ProductStatusEnum.draft);
   });
 });

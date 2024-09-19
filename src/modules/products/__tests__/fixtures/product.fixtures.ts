@@ -15,4 +15,13 @@ export class ProductFixtures {
   static simpleProductsList(count: number): ProductEntity[] {
     return new Array(count).map(() => this.simpleProduct());
   }
+
+  static simpleDeletedProduct(): ProductEntity {
+    return new ProductEntity(
+      faker.string.uuid(),
+      faker.number.int(),
+      ProductStatusEnum.draft,
+      faker.date.past(),
+    );
+  }
 }
