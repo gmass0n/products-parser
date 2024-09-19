@@ -8,8 +8,8 @@ A API é resposável por importar os dados nutricionais de produtos alimentício
 
 ## Tecnologias Utilizadas
 
-- **Linguagem**: Node.js
-- **Framework**: NestJS
+- **Linguagem**: Node.js 20
+- **Framework**: NestJS 10
 - **Banco de Dados**: MongoDB Atlas
 - **Arquitetura**: SOLID e DDD (Domain-Driven Design)
 - **Testes Unitários**: Jest
@@ -52,7 +52,7 @@ A API é resposável por importar os dados nutricionais de produtos alimentício
    yarn install
    ```
 
-4. Configure as variáveis de ambiente:
+4. Criar um arquivo .env com variáveis de ambiente:
 
    ```bash
    HOST=
