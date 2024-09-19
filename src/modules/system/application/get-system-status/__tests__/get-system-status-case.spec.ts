@@ -15,10 +15,8 @@ describe('GetSystemStatus UseCase', () => {
   const schedulerRegistry = createSpyObj(SchedulerRegistry, ['getCronJob']);
 
   it('should return system status', async () => {
-    const mockDbStatus = SystemDatabaseConnectionStatusEnum.success;
-    systemRepository.checkDatabaseConnection.mockResolvedValueOnce(
-      mockDbStatus,
-    );
+    const dbStatus = SystemDatabaseConnectionStatusEnum.success;
+    systemRepository.checkDatabaseConnection.mockResolvedValueOnce(dbStatus);
 
     Object.values(cronConfig).forEach(() => {
       schedulerRegistry.getCronJob.mockReturnValueOnce({
@@ -37,6 +35,6 @@ describe('GetSystemStatus UseCase', () => {
       Object.values(cronConfig).length,
     );
     expect(result).toBeInstanceOf(SystemStatusEntity);
-    expect(result.databaseConnectionStatus).toBe(mockDbStatus);
+    expect(result.databaseConnectionStatus).toBe(dbStatus);
   });
 });

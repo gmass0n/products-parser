@@ -1,2 +1,2 @@
 export const PRODUCT_MODEL = 'Products';
-export const PRODUCT_IMPORT_HISTORY_MODEL = 'ProductImportHistories';
+export const PRODUCTS_IMPORT_HISTORY_MODEL = 'ProductsImportHistories';

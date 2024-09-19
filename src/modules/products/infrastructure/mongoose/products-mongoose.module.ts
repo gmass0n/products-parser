@@ -3,12 +3,12 @@ import { Module } from '@nestjs/common';
 import { DatabaseModule } from '~/shared/database/database.module';
 import { ProductSchema } from './schemas/product.schema';
 import { ProductsMongooseRepository } from './repositories/products.repository';
-import { ProductImportHistorySchema } from './schemas/product-import-history.schema';
+import { ProductsImportHistorySchema } from './schemas/products-import-history.schema';
 
-import { PRODUCT_IMPORT_HISTORY_MODEL, PRODUCT_MODEL } from './constants';
-import { ProductImportHistoriesMongooseRepository } from './repositories/product-import-histories.repository';
+import { PRODUCTS_IMPORT_HISTORY_MODEL, PRODUCT_MODEL } from './constants';
+import { ProductsImportHistoriesMongooseRepository } from './repositories/products-import-histories.repository';
 import { ProductsRepository } from '../../application/ports/products.repository';
-import { ProductImportHistoriesRepository } from '../../application/ports/product-import-histories.repository';
+import { ProductsImportHistoriesRepository } from '../../application/ports/products-import-histories.repository';
 
 @Module({
   imports: [
@@ -17,22 +17,22 @@ import { ProductImportHistoriesRepository } from '../../application/ports/produc
       schema: ProductSchema,
     }),
     DatabaseModule.forFeature({
-      name: PRODUCT_IMPORT_HISTORY_MODEL,
-      schema: ProductImportHistorySchema,
+      name: PRODUCTS_IMPORT_HISTORY_MODEL,
+      schema: ProductsImportHistorySchema,
     }),
   ],
   providers: [
     ProductsMongooseRepository,
-    ProductImportHistoriesMongooseRepository,
+    ProductsImportHistoriesMongooseRepository,
     {
       provide: ProductsRepository,
       useClass: ProductsMongooseRepository,
     },
     {
-      provide: ProductImportHistoriesRepository,
-      useClass: ProductImportHistoriesMongooseRepository,
+      provide: ProductsImportHistoriesRepository,
+      useClass: ProductsImportHistoriesMongooseRepository,
     },
   ],
-  exports: [ProductsRepository, ProductImportHistoriesRepository],
+  exports: [ProductsRepository, ProductsImportHistoriesRepository],
 })
 export class ProductsMongooseModule {}

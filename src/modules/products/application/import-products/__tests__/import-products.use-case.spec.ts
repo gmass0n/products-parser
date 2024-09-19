@@ -5,11 +5,11 @@ import * as fs from 'fs';
 import * as zlib from 'zlib';
 
 import { ProductsRepository } from '../../ports/products.repository';
-import { ProductImportHistoriesRepository } from '../../ports/product-import-histories.repository';
+import { ProductsImportHistoriesRepository } from '../../ports/products-import-histories.repository';
 import { ProductFixtures } from '../../../__tests__/fixtures/product.fixtures';
 import { ImportProductsUseCase } from '../import-products.use-case';
 import { ProductsImportHistoryFixtures } from '~/modules/products/__tests__/fixtures/products-import-history.fixtures';
-import { ProductImportHistoryEntity } from '~/modules/products/domain/entities/product-import-history.entity';
+import { ProductsImportHistoryEntity } from '~/modules/products/domain/entities/products-import-history.entity';
 import { Readable } from 'stream';
 
 jest.mock('axios');
@@ -23,7 +23,7 @@ const mockedZlib = zlib as jest.Mocked<typeof zlib>;
 describe('ImportProducts UseCase', () => {
   const productsRepository = createSpyObj(ProductsRepository, ['update']);
   const productsImportHistoriesRepository = createSpyObj(
-    ProductImportHistoriesRepository,
+    ProductsImportHistoriesRepository,
     ['create'],
   );
 
@@ -75,7 +75,7 @@ describe('ImportProducts UseCase', () => {
     });
     const savedProductsCount = savedProducts.length;
 
-    const productsImportHistory = new ProductImportHistoryEntity(
+    const productsImportHistory = new ProductsImportHistoryEntity(
       files,
       new Date(),
       savedProductsCount,

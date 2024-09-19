@@ -6,7 +6,8 @@ import * as path from 'path';
 
 import { ProductEntity } from '../../domain/entities/product.entity';
 import { ProductsRepository } from '../ports/products.repository';
-import { ProductImportHistoriesRepository } from '../ports/product-import-histories.repository';
+import { ProductsImportHistoriesRepository } from '../ports/products-import-histories.repository';
+import { ProductStatusEnum } from '../../domain/enums/product-status.enum';
 
 @Injectable()
 export class ImportProductsUseCase {
@@ -14,7 +15,7 @@ export class ImportProductsUseCase {
 
   constructor(
     private readonly productsRepository: ProductsRepository,
-    private readonly productImportHistoriesRepository: ProductImportHistoriesRepository,
+    private readonly productsImportHistoriesRepository: ProductsImportHistoriesRepository,
   ) {}
 
   public async execute(): Promise<void> {
@@ -46,7 +47,7 @@ export class ImportProductsUseCase {
       } catch (error) {}
     }
 
-    await this.productImportHistoriesRepository.create(
+    await this.productsImportHistoriesRepository.create(
       files,
       savedProductsCount,
     );
@@ -125,6 +126,7 @@ export class ImportProductsUseCase {
           {
             ...request,
             imported_t: new Date(),
+            status: ProductStatusEnum.published,
           },
           true,
         );

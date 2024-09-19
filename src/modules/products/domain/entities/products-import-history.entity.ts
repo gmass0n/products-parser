@@ -1,4 +1,4 @@
-export class ProductImportHistoryEntity {
+export class ProductsImportHistoryEntity {
   constructor(
     public readonly files: string[],
     public readonly imported_at: Date,

@@ -1,0 +1,41 @@
+version: '3.8'
+
+services:
+  mongodb:
+    image: mongo:latest
+    restart: always
+    container_name: mongo
+    ports:
+      - 27017:27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: mongodb
+      MONGO_INITDB_ROOT_PASSWORD: mongodb
+    volumes:
+      - ../db_data/:/data/db/
+    networks:
+      - backend
+  api:
+    container_name: api
+    image: products-parser:1.0.0
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 3000:3000
+    environment:
+      - PORT=3000
+      - MONGODB_URI=mongodb://mongodb:mongodb@mongo:27017/products-parser?authSource=admin&readPreference=primary&retryWrites=false&directConnection=true&ssl=false
+      - DB_TYPE=mongodb
+      - API_KEY=${API_KEY}
+      - PRODUCTS_IMPORT_CRON_TIME=${PRODUCTS_IMPORT_CRON_TIME}
+    depends_on:
+      - mongodb
+    networks:
+      - backend
+volumes:
+  mongodb:
+    driver: local
+  api:
+    driver: local
+networks:
+  backend:
