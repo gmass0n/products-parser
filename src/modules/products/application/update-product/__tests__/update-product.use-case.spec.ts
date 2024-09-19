@@ -16,7 +16,6 @@ describe('UpdateProduct UseCase', () => {
     productsRepository.update.mockResolvedValueOnce(updatedProduct);
 
     const sut = new UpdateProductUseCase(productsRepository);
-
     const result = await sut.execute(product.code, updatedProduct);
 
     expect(productsRepository.update).toHaveBeenCalledWith(
