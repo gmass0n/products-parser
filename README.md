@@ -37,7 +37,7 @@ A API é resposável por importar os dados nutricionais de produtos alimentício
 1. Clone o repositório:
 
    ```bash
-   git clone https://github.com/seu-usuario/products-parser.git
+   git clone https://github.com/gmass0n/products-parser.git
    ```
 
 2. Acesse a pasta do projeto:
